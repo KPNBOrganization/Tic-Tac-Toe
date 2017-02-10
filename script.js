@@ -10,8 +10,8 @@ var Arr = [];
 
 function WinCondition()
 {
-	for (var i=0; i<3; i++) {
-		for(var j=0; j<3; j++){
+	for (var i=0; i<FIELD_SIZE; i++) {
+		for(var j=0; j<FIELD_SIZE; j++){
 			if (Arr[i][j]!=0) 
 				console.log(Derevo(Arr[i][j], i, j));
 		}
@@ -27,13 +27,13 @@ function Derevo(key, Row, Column){
 	dColumn=-1;
 	nRow=Row;
 	nColumn=Column;
-	for (var i =0; i<3; i++){
-		if ((nRow+dRow<=3) && (nColumn+dColumn>=-1) && (Arr[nRow][nColumn]==key)) { 
+	for (var i =0; i<FIELD_SIZE; i++){
+		if ((nRow+dRow<=FIELD_SIZE) && (nColumn+dColumn>=-1) && (Arr[nRow][nColumn]==key)) { 
 			nRow+=dRow;
 			nColumn+=dColumn;
 		}
 		else break;
-		if(i==2) {
+		if(i==FIELD_SIZE-1) {
 			return key;
 		}
 	}
@@ -42,13 +42,13 @@ function Derevo(key, Row, Column){
 	dColumn=0;
 	nRow=Row;
 	nColumn=Column;
-	for (var i =0; i<3; i++){
-		if ((nRow+dRow<=3) && (Arr[nRow][nColumn]==key)) { 
+	for (var i =0; i<FIELD_SIZE; i++){
+		if ((nRow+dRow<=FIELD_SIZE) && (Arr[nRow][nColumn]==key)) { 
 			nRow+=dRow;
 			nColumn+=dColumn;
 		}
 		else break;
-		if(i==2) {
+		if(i==FIELD_SIZE-1) {
 			return key;
 		}
 	}
@@ -57,13 +57,13 @@ function Derevo(key, Row, Column){
 	dColumn=1;	
 	nRow=Row;
 	nColumn=Column;
-	for (var i =0; i<3; i++){
-		if ((nRow+dRow<=3) && (nColumn+dColumn<=3) && (Arr[nRow][nColumn]==key)) { 
+	for (var i =0; i<FIELD_SIZE; i++){
+		if ((nRow+dRow<=FIELD_SIZE) && (nColumn+dColumn<=FIELD_SIZE) && (Arr[nRow][nColumn]==key)) { 
 			nRow+=dRow;
 			nColumn+=dColumn;
 		}
 		else break;
-		if(i==2) {
+		if(i==FIELD_SIZE-1) {
 			return key;
 		}
 	}
@@ -72,15 +72,15 @@ function Derevo(key, Row, Column){
 	dColumn=1;
 	nRow=Row;
 	nColumn=Column;
-	for (var i =0; i<=3; i++){
-		if ((nColumn+dColumn<=3) && (Arr[nRow][nColumn]==key)) {
+	for (var i =0; i<=FIELD_SIZE; i++){
+		if ((nColumn+dColumn<=FIELD_SIZE) && (Arr[nRow][nColumn]==key)) {
 
 			nRow+=dRow;
 			nColumn+=dColumn;
 		}
 		else break;
 
-		if(i==2) {
+		if(i==FIELD_SIZE-1) {
 			return key;
 		}
 	}
