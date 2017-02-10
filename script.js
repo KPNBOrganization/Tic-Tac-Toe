@@ -6,7 +6,6 @@ const EMPTY = 0;
 const CROSS = 1;
 const CIRCLE = 2;
 
-var Cells;
 var Arr = [];
 
 function WinCondition()
@@ -90,7 +89,7 @@ function Derevo(key, Row, Column){
 
 function GetField()
 {
-	Cells = document.getElementsByTagName("td");
+	var Cells = document.getElementsByTagName("td");
 
 	var k = 0;
 
