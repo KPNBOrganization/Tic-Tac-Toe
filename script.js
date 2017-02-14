@@ -6,7 +6,39 @@ const EMPTY = 0;
 const CROSS = 1;
 const CIRCLE = 2;
 
+var TURN = 'X';
+
 var Arr = [];
+
+function Run()
+{
+	// Add event on click
+
+	var Cells = document.getElementsByTagName('td');
+
+	for(var i = 0; i < Cells.length; i++)
+	{
+		Cells[i].addEventListener('click', function (event) {
+			var Cell = event.target;
+
+			if(Cell.innerHTML == '&nbsp;')
+			{
+				Cell.innerHTML = TURN;
+
+				if(TURN == 'X')
+				{
+					Cell.className = 'cross';
+					TURN = 'O';
+				}
+				else
+				{
+					Cell.className = 'circle';
+					TURN = 'X';
+				}
+			}
+		});
+	}
+}
 
 function WinCondition()
 {
@@ -133,7 +165,27 @@ function WriteField()
 	}
 }
 
+function ClearField()
+{
+	var Cells = document.getElementsByTagName('td');
+
+	for(var i = 0; i < Cells.length; i++)
+	{
+		Cells[i].innerHTML = '&nbsp;';
+		Cells[i].className = '';
+	}
+}
+
+function Reset()
+{
+	if(confirm('Do you really wabt to reset this game?'))
+		window.location.reload(true);
+}
+
 // After our window wal loaded
 window.onload = function () {
-	GetField();
+	//GetField();
+	ClearField();
+
+	Run();
 }
