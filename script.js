@@ -5,6 +5,8 @@ const FIELD_SIZE = 3;
 const EMPTY = 0;
 const CROSS = 1;
 const CIRCLE = 2;
+const DRAW = 3;
+var Turn_number = 0;
 
 var TURN = 'X';
 
@@ -29,25 +31,51 @@ function Run()
 				{
 					Cell.className = 'cross';
 					TURN = 'O';
+
+					document.getElementById("cross").className = "";
+					document.getElementById("circle").className = "active";
 				}
 				else
 				{
 					Cell.className = 'circle';
 					TURN = 'X';
+
+					document.getElementById("circle").className = "";
+					document.getElementById("cross").className = "active";
 				}
 			}
+			GetField();
+			
+			var Winner = WinCondition();
+
+			if(Winner == CROSS)
+			{
+				document.getElementById("cross_score").innerHTML = parseInt(document.getElementById("cross_score").innerHTML) + 1;
+				document.getElementById("cross_won").className = "winner_notification winner";
+			}
+			else if(Winner == CIRCLE)
+			{
+				document.getElementById("circle_score").innerHTML = parseInt(document.getElementById("circle_score").innerHTML) + 1;
+				document.getElementById("circle_won").className = "winner_notification winner";
+			}
+			else if(Winner == DRAW)
+				document.getElementById("draw").className = "winner_notification winner";
 		});
 	}
 }
 
 function WinCondition()
-{
+{	
+	Turn_number++;
 	for (var i=0; i<FIELD_SIZE; i++) {
 		for(var j=0; j<FIELD_SIZE; j++){
 			if (Arr[i][j]!=0) 
-				console.log(Derevo(Arr[i][j], i, j));
+				if(Derevo(Arr[i][j], i, j) != 0)
+					return Derevo(Arr[i][j], i, j);
 		}
 	}
+	if (Turn_number == 9) return DRAW; 
+	return 0;
 }
 
 
@@ -180,6 +208,20 @@ function Reset()
 {
 	if(confirm('Do you really wabt to reset this game?'))
 		window.location.reload(true);
+}
+
+function Continue()
+{
+	ClearField();
+	GetField();
+
+	Turn_number = 0;
+	TURN        = 'X';
+
+	document.getElementById("circle").className = "";
+	document.getElementById("cross").className = "active";
+
+	document.getElementsByClassName("winner")[0].className = "winner_notification";
 }
 
 // After our window wal loaded

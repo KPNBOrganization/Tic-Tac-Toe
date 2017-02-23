@@ -10,8 +10,8 @@
 	<body>
 		<div id="field_wrap">
 			<div id="score">
-				<span id="cross">X</span>
-				<span id="score">0 : 0</span>
+				<span class="active" id="cross">X</span>
+				<span id="score"><span id="cross_score">0</span> : <span id="circle_score">0</span></span>
 				<span id="circle">O</span>
 			</div>
 			<table id="field">
@@ -33,5 +33,17 @@
 			</table>
 		</div>
 		<a id="reset" href="#" onclick="Reset();">Reset</a>
+		<div class="winner_notification" id="circle_won">
+			CIRCLE WON!<br />
+			<button onclick="Continue();">CONTINUE</button>
+		</div>
+		<div class="winner_notification" id="cross_won">
+			CROSS WON!<br />
+			<button onclick="Continue();">CONTINUE</button>
+		</div>
+		<div class="winner_notification" id="draw">
+			DRAW!<br />
+			<button onclick="Continue();">CONTINUE</button>
+		</div>
 	</body>
 </html>
