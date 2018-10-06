@@ -1,2 +1,2 @@
 # Tic-tac-toe
-game_1
+Basic tic-tac-toe game for 2 players.
